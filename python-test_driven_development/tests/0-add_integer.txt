@@ -9,8 +9,10 @@
 98
 >>> print(add_integer(5, 10.7))
 15
->>> print(add_integer(5.9, 3.1))
-8
+>>> print(add_integer(1e308, 1e308))
+Traceback (most recent call last):
+...
+OverflowError: cannot convert float infinity to integer
 >>> try:
 ...     print(add_integer(4, "School"))
 ... except Exception as e:
