@@ -5,6 +5,7 @@ Performs element-wise division on a matrix.
 Rounds results to 2 decimal places.
 """
 
+
 def matrix_divided(matrix, div):
     """
     Divide matrix values by div.
@@ -17,10 +18,9 @@ def matrix_divided(matrix, div):
     if div == 0:
         raise ZeroDivisionError("division by zero")
     if not isinstance(matrix, list) or not all(isinstance(row, list)
-                                              for row in matrix):
+                                               for row in matrix):
         raise TypeError(
-            "matrix must be a matrix "
-                        "(list of lists) of integers/floats"
+            "matrix must be a matrix (list of lists) of integers/floats"
         )
     for row in matrix:
         if not all(isinstance(x, (int, float)) for x in row):
