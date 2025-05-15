@@ -1,0 +1,32 @@
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+>>> text_indentation("Hello world.")
+Hello world.
+<BLANKLINE>
+>>> text_indentation("Bonjour. Je vais bien? Et toi: Oui.")
+Bonjour.
+<BLANKLINE>
+Je vais bien?
+<BLANKLINE>
+Et toi:
+<BLANKLINE>
+Oui.
+<BLANKLINE>
+>>> text_indentation("Python is fun:Really fun.Indeed?")
+Python is fun:
+<BLANKLINE>
+Really fun.
+<BLANKLINE>
+Indeed?
+<BLANKLINE>
+>>> text_indentation("  Salut!  Comment ça va ?  Très bien. Merci. ")
+Salut!  Comment ça va ?
+<BLANKLINE>
+Très bien.
+<BLANKLINE>
+Merci.
+<BLANKLINE>
+>>> try:
+...     text_indentation(42)
+... except Exception as e:
+...     print(e)
+text must be a string
