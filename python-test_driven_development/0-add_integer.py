@@ -1,6 +1,11 @@
 #!/usr/bin/python3
 """
-This module provides a function to add two integers.
+This module provides a function for adding two numbers.
+
+It ensures inputs are integers or floats, and casts floats to integers.
+If invalid inputs are provided, a TypeError is raised.
+
+This module is intended for educational purposes.
 """
 
 
