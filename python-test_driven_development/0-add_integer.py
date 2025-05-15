@@ -1,11 +1,10 @@
 #!/usr/bin/python3
 """
-This module provides a function for adding two numbers.
+Module for add_integer function.
 
-It ensures inputs are integers or floats, and casts floats to integers.
-If invalid inputs are provided, a TypeError is raised.
-
-This module is intended for educational purposes.
+This module provides a function that adds two integers or floats.
+It casts floats to integers before performing the addition.
+If the input is not a number, it raises a TypeError.
 """
 
 
