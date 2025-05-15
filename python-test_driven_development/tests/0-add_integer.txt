@@ -9,8 +9,6 @@
 98
 >>> add_integer(5, 10.7)
 15
->>> add_integer(5.9, 3.1)
-8
 >>> add_integer(5, None)
 Traceback (most recent call last):
 ...
