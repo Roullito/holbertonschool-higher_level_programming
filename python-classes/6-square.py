@@ -18,7 +18,8 @@ class Square:
         Initialize a new Square instance.
         Args:
             size (int): The size of the square (default 0).
-            position (tuple): The position offset as a tuple of two positive integers.
+            position (tuple): The position offset as a tuple of
+            two positive integers.
         """
 
         self.size = size
@@ -70,7 +71,7 @@ class Square:
         offset by the `position` attribute.
         If size is 0, prints an empty line.
         """
-        
+
         for i in range(self.__position[1]):
             print()
         if self.__size == 0:
@@ -82,13 +83,29 @@ class Square:
 
     @property
     def position(self):
+        """
+        Get the printing position of the square.
+
+        Returns:
+            tuple: A tuple of two positive integers.
+        """
         return self.__position
 
     @position.setter
     def position(self, value):
-        if (not isinstance(value, tuple)
+        """
+        Set the printing position of the square.
+        Args:
+            value (tuple): A tuple of two positive integers.
+        Raises:
+            TypeError: If value is not a tuple of two positive integers.
+        """
+
+        if (
+            not isinstance(value, tuple)
             or len(value) != 2
             or not all(isinstance(n, int) for n in value)
-            or not all(n >= 0 for n in value)):
-                raise TypeError("position must be a tuple of 2 positive integers")
+            or not all(n >= 0 for n in value)
+        ):
+            raise TypeError("position must be a tuple of 2 positive integers")
         self.__position = value
