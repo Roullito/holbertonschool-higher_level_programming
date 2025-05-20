@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Module 1-rectangle
 Defines a Rectangle class with width and height validation.
 """
@@ -5,24 +6,16 @@ Defines a Rectangle class with width and height validation.
 
 class Rectangle:
     """
-    Represents a rectangle with width and height.
-
-    Attributes:
-        __width (int): The width of the rectangle (private).
-        __height (int): The height of the rectangle (private).
+    Defines a rectangle with private width and height.
     """
 
     def __init__(self, width=0, height=0):
         """
-        Initialize a new Rectangle instance.
+        Initialize a new Rectangle.
 
         Args:
-            width (int): The width of the rectangle (default is 0).
-            height (int): The height of the rectangle (default is 0).
-
-        Raises:
-            TypeError: If width or height is not an integer.
-            ValueError: If width or height is negative.
+            width (int): Width of the rectangle (default 0).
+            height (int): Height of the rectangle (default 0).
         """
         self.width = width
         self.height = height
@@ -33,7 +26,7 @@ class Rectangle:
         Get the width of the rectangle.
 
         Returns:
-            int: The width of the rectangle.
+            int: The width.
         """
         return self.__width
 
@@ -43,11 +36,11 @@ class Rectangle:
         Set the width of the rectangle.
 
         Args:
-            value (int): The new width.
+            value (int): New width.
 
         Raises:
-            TypeError: If value is not an integer.
-            ValueError: If value is negative.
+            TypeError: If not an integer.
+            ValueError: If less than 0.
         """
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
@@ -61,7 +54,7 @@ class Rectangle:
         Get the height of the rectangle.
 
         Returns:
-            int: The height of the rectangle.
+            int: The height.
         """
         return self.__height
 
@@ -71,11 +64,11 @@ class Rectangle:
         Set the height of the rectangle.
 
         Args:
-            value (int): The new height.
+            value (int): New height.
 
         Raises:
-            TypeError: If value is not an integer.
-            ValueError: If value is negative.
+            TypeError: If not an integer.
+            ValueError: If less than 0.
         """
         if not isinstance(value, int):
             raise TypeError("height must be an integer")
