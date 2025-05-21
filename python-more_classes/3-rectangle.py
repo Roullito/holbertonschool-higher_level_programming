@@ -98,11 +98,29 @@ class Rectangle:
 
     def __str__(self):
         """
-        Return the string representation of the rectangle using '#'.
+        Return the string representation of the rectangle using the '#'
+        character.
 
+        This method constructs a visual representation of the rectangle by
+        generating a string consisting of lines of '#' characters. The number
+        of lines corresponds to the rectangle's height, and each line contains
+        '#' repeated according to the rectangle's width.
+
+        If either the width or height of the rectangle is 0, an empty
+        string is returned.
         Returns:
-            str: Visual representation of the rectangle.
+            str: A string representing the rectangle with '#' characters,
+            or an
+                empty string if width or height is 0.
+        Example:
+            For a rectangle with width=4 and height=3, this method returns:
+            ####
+            ####
+            ####
         """
-        if self.__width == 0 or self.__height == 0:
+        if (self.width == 0) or (self.height == 0):
             return ""
-        return "\n".join(["#" * self.__width for _ in range(self.__height)])
+        lines = []
+        for i in range(self.height):
+            lines.append("#" * self.width)
+        return "\n".join(lines)
