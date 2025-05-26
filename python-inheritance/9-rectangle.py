@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""Module that defines a Rectangle class with area and string
+representation."""
+
+
 class BaseGeometry:
     """Base class for geometry objects."""
 
@@ -21,6 +25,7 @@ class BaseGeometry:
             raise TypeError(f"{name} must be an integer")
         if value <= 0:
             raise ValueError(f"{name} must be greater than 0")
+
 
 class Rectangle(BaseGeometry):
     """Rectangle class inheriting from BaseGeometry."""

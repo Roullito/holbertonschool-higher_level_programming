@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""Module that defines a Square class with custom string representation."""
+
+
 class BaseGeometry:
     """Base class for geometry objects."""
 
@@ -22,6 +25,7 @@ class BaseGeometry:
         if value <= 0:
             raise ValueError(f"{name} must be greater than 0")
 
+
 class Rectangle(BaseGeometry):
     """Rectangle class inheriting from BaseGeometry."""
     def __init__(self, width, height):
@@ -38,6 +42,7 @@ class Rectangle(BaseGeometry):
     def __str__(self):
         """Return the string representation of the rectangle."""
         return f"[Rectangle] {self.__width}/{self.__height}"
+
 
 class Square(Rectangle):
     """Square class that inherits from Rectangle.

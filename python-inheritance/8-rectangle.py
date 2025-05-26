@@ -1,9 +1,13 @@
 #!/usr/bin/python3
+"""Module that defines a Rectangle class inheriting from BaseGeometry."""
+
+
 class BaseGeometry:
     """Base class for geometry objects."""
 
     def area(self):
-        """Placeholder method for area computation. To be implemented by subclasses."""
+        """Placeholder method for area computation.
+        To be implemented by subclasses."""
         raise Exception("area() is not implemented")
 
     def integer_validator(self, name, value):
@@ -22,6 +26,7 @@ class BaseGeometry:
         if value <= 0:
             raise ValueError(f"{name} must be greater than 0")
 
+
 class Rectangle(BaseGeometry):
     """Rectangle class inheriting from BaseGeometry."""
     def __init__(self, width, height):
@@ -30,4 +35,3 @@ class Rectangle(BaseGeometry):
         self.integer_validator("height", height)
         self.__width = width
         self.__height = height
-
