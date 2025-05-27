@@ -11,16 +11,20 @@ Classes:
 
 from abc import ABC, abstractmethod
 
+
 class Animal(ABC):
     @abstractmethod
     def sound(self):
-        """Abstract method that should be implemented by all Animal subclasses"""
+        """Abstract method that should be implemented
+        by all Animal subclasses"""
         pass
+
 
 class Dog(Animal):
     def sound(self):
         """Return the sound made by a dog"""
         return "Bark"
+
 
 class Cat(Animal):
     def sound(self):

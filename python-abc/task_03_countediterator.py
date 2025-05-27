@@ -4,6 +4,7 @@ This module defines the CountedIterator class, which wraps a standard iterator
 and keeps track of how many items have been iterated over.
 """
 
+
 class CountedIterator:
     """Custom iterator that counts how many times it has been iterated."""
 

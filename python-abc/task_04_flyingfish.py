@@ -5,6 +5,7 @@ that inherits from both Fish and Bird. It overrides their methods to
 demonstrate method resolution order (MRO).
 """
 
+
 class Fish:
     """Represents a fish with swimming behavior and aquatic habitat."""
 
@@ -16,6 +17,7 @@ class Fish:
         """Print the habitat of the fish."""
         print("The fish lives in water")
 
+
 class Bird:
     """Represents a bird with flying behavior and aerial habitat."""
 
@@ -26,6 +28,7 @@ class Bird:
     def habitat(self):
         """Print the habitat of the bird."""
         print("The bird lives in the sky")
+
 
 class FlyingFish(Fish, Bird):
     """

@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 """
-This module defines an abstract base class Shape and two concrete implementations:
-Circle and Rectangle. It also includes a utility function to display the area and
+This module defines an abstract base class Shape and two concrete
+implementations:
+Circle and Rectangle. It also includes a utility function to display
+the area and
 perimeter of any shape object that follows the Shape interface (duck typing).
 """
 
 from abc import ABC, abstractmethod
 import math
+
 
 class Shape(ABC):
     """Abstract base class for geometric shapes."""
@@ -20,6 +23,7 @@ class Shape(ABC):
     def perimeter(self):
         """Return the perimeter of the shape."""
         pass
+
 
 class Circle(Shape):
     """Circle shape defined by its radius."""
@@ -35,6 +39,7 @@ class Circle(Shape):
         """Return the perimeter (circumference) of the circle."""
         return 2 * math.pi * self.radius
 
+
 class Rectangle(Shape):
     """Rectangle shape defined by its width and height."""
 
@@ -49,6 +54,7 @@ class Rectangle(Shape):
     def perimeter(self):
         """Return the perimeter of the rectangle."""
         return 2 * (self.width + self.height)
+
 
 def shape_info(obj):
     """

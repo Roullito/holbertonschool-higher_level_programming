@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """
-This module defines the VerboseList class, which extends Python's built-in list.
+This module defines the VerboseList class,
+which extends Python's built-in list.
 It overrides standard list modification methods to print informative messages
 whenever the list is modified.
 """
+
 
 class VerboseList(list):
     """A subclass of list that prints messages when modified."""
@@ -24,7 +26,8 @@ class VerboseList(list):
         print(f"Removed [{item}] from the list.")
 
     def pop(self, index=-1):
-        """Remove and return item at index (default last), with notification."""
+        """Remove and return item at index (default last),
+        with notification."""
         item = super().pop(index)
         print(f"Popped [{item}] from the list.")
         return item
