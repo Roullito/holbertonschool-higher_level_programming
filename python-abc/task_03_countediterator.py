@@ -37,8 +37,9 @@ class CountedIterator:
         Raises:
             StopIteration: When the wrapped iterator is exhausted.
         """
+        item = next(self.iterator)
         self.count += 1
-        return next(self.iterator)
+        return item
 
     def get_count(self):
         """
