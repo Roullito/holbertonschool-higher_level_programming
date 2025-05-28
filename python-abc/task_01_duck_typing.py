@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 """
-This module defines an abstract base class Shape and two concrete
-implementations:
-Circle and Rectangle. It also includes a utility function to display
-the area and
-perimeter of any shape object that follows the Shape interface (duck typing).
+This module defines the Shape abstract class and two implementations:
+Circle and Rectangle. It also defines a shape_info function that uses
+duck typing to print area and perimeter.
 """
 
 from abc import ABC, abstractmethod
@@ -12,7 +10,7 @@ import math
 
 
 class Shape(ABC):
-    """Abstract base class for geometric shapes."""
+    """Abstract base class for shapes."""
 
     @abstractmethod
     def area(self):
@@ -26,44 +24,33 @@ class Shape(ABC):
 
 
 class Circle(Shape):
-    """Circle shape defined by its radius."""
+    """Circle shape with a radius."""
 
     def __init__(self, radius):
         self.radius = radius
 
     def area(self):
-        """Return the area of the circle."""
-        return math.pi * (self.radius ** 2)
+        return math.pi * self.radius ** 2
 
     def perimeter(self):
-        """Return the perimeter (circumference) of the circle."""
         return 2 * math.pi * self.radius
 
 
 class Rectangle(Shape):
-    """Rectangle shape defined by its width and height."""
+    """Rectangle shape with width and height."""
 
     def __init__(self, width, height):
         self.width = width
         self.height = height
 
     def area(self):
-        """Return the area of the rectangle."""
         return self.width * self.height
 
     def perimeter(self):
-        """Return the perimeter of the rectangle."""
         return 2 * (self.width + self.height)
 
 
 def shape_info(obj):
-    """
-    Print the area and perimeter of a shape object that implements
-    area() and perimeter() methods (duck typing).
-    """
-    try:
-        print(f"Area: {obj.area()}")
-        print(f"Perimeter: {obj.perimeter()}")
-    except AttributeError:
-        print("Error: Object does not implement area() and perimeter()")
-
+    """Print the area and perimeter using duck typing."""
+    print(f"Area: {obj.area()}")
+    print(f"Perimeter: {obj.perimeter()}")
