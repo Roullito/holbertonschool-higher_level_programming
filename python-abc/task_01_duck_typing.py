@@ -61,5 +61,9 @@ def shape_info(obj):
     Print the area and perimeter of a shape object that implements
     area() and perimeter() methods (duck typing).
     """
-    print(f"Area: {obj.area()}")
-    print(f"Perimeter: {obj.perimeter()}")
+    try:
+        print(f"Area: {obj.area()}")
+        print(f"Perimeter: {obj.perimeter()}")
+    except AttributeError:
+        print("Error: Object does not implement area() and perimeter()")
+
