@@ -30,3 +30,8 @@
 [1, 2, 3, 4, 5]
 >>> print(reverse_list)
 [5, 4, 3, 2, 1]
+
+>>> isinstance(my_list, list)
+True
+>>> issubclass(MyList, list)
+True
