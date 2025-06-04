@@ -1,20 +1,10 @@
-#!/usr/bin/env python3
-"""
-Module task_01_pickle
-
-Provides a class CustomObject that can be serialized to and deserialized
-from a file using the pickle module.
-Includes:
-- Attributes: name (str), age (int), is_student (bool)
-- Methods: display(), serialize(), deserialize()
-"""
+#!/usr/bin/python3
 
 import pickle
 
-
 class CustomObject:
     """
-    CustomObject represents a simple user with basic attributes.
+    A class to represent a custom object with serialization capabilities.
 
     Attributes:
         name (str): The name of the person.
@@ -24,12 +14,12 @@ class CustomObject:
 
     def __init__(self, name, age, is_student):
         """
-        Initialize a CustomObject instance.
+        Initializes a new CustomObject instance.
 
         Args:
-            name (str): Name of the object.
-            age (int): Age of the object.
-            is_student (bool): Whether the object is a student.
+            name (str): The name of the person.
+            age (int): The age of the person.
+            is_student (bool): Student status.
         """
         self.name = name
         self.age = age
@@ -37,36 +27,42 @@ class CustomObject:
 
     def display(self):
         """
-        Print the attributes of the object in a readable format.
+        Displays the object's attributes in a readable format.
         """
-        print("Name: {}".format(self.name))
-        print("Age: {}".format(self.age))
-        print("Is Student: {}".format(self.is_student))
+        print(f"Name: {self.name}")
+        print(f"Age: {self.age}")
+        print(f"Is student: {self.is_student}")
 
     def serialize(self, filename):
         """
-        Serialize the current instance and save it to a file using pickle.
+        Serializes the current instance and saves it to a file.
 
         Args:
-            filename (str): The file path where the object should be saved.
+            filename (str): The name of the file where the object will be saved.
+
+        Returns:
+            None if an error occurs during serialization.
         """
-        with open(filename, "wb") as f:
-            pickle.dump(self, f)
+        try:
+            with open(filename, "wb") as f:
+                pickle.dump(self, f)
+        except Exception:
+            return None
 
     @classmethod
     def deserialize(cls, filename):
         """
-        Deserialize a file to reconstruct a CustomObject instance.
+        Loads an instance of CustomObject from a pickle file.
 
         Args:
-            filename (str): The file path from which to load the object.
+            filename (str): The name of the file to load from.
 
         Returns:
-            CustomObject or None: The restored object,
-            or None if an error occurred.
+            CustomObject: A new instance loaded from the file.
+            None: If loading fails due to an exception.
         """
         try:
             with open(filename, "rb") as f:
                 return pickle.load(f)
-        except (FileNotFoundError, pickle.UnpicklingError):
+        except Exception:
             return None
