@@ -20,4 +20,3 @@ deserialized_data = load_and_deserialize('data.json')
 # Output: The deserialized data
 print("Deserialized Data:")
 print(deserialized_data)
-
