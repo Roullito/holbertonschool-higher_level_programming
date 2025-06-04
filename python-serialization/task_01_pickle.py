@@ -43,7 +43,6 @@ class CustomObject:
         print("Age: {}".format(self.age))
         print("Is Student: {}".format(self.is_student))
 
-
     def serialize(self, filename):
         """
         Serialize the current instance and save it to a file using pickle.
