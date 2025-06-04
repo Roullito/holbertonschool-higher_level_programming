@@ -68,6 +68,8 @@ class CustomObject:
         try:
             with open(filename, "rb") as f:
                 data_restored = pickle.load(f)
-            return data_restored
+                if isinstance(data_restored, cls):
+                    return data_restored
+                return None
         except (FileNotFoundError, pickle.UnpicklingError):
             return None
