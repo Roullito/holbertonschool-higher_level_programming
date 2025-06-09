@@ -1,7 +1,3 @@
-<div align="center"><img src="https://github.com/ksyv/holbertonschool-web_front_end/blob/main/baniere_holberton.png"></div>
-
----
-
 # 📡 RESTful API – Holberton School
 
 ## 🎡 Project: RESTful API – Novice Level
@@ -114,6 +110,84 @@ Content-Length: 3057
         | HTTP/1.1 200 OK                          |
         | Content-Type: application/json           |
 ```
+
+---
+
+## 📄 Task 1: Consume data from an API using `curl`
+
+### 📅 Objective
+
+By the end of this task, you should be able to:
+
+* Use `curl` to send `GET` and `POST` requests to an API
+* View and interpret HTTP response headers
+* Understand the structure of requests sent via the command line
+
+---
+
+### 🚪 Tools Used
+
+* `curl`
+* API endpoint: `https://jsonplaceholder.typicode.com/posts`
+
+---
+
+### 📊 Observations
+
+* `curl https://jsonplaceholder.typicode.com/posts`
+
+  * Sends a default `GET` request
+  * Returns a JSON array of post objects
+  * Each object contains: `userId`, `id`, `title`, `body`
+
+* `curl -I https://jsonplaceholder.typicode.com/posts`
+
+  * Returns only the HTTP headers
+  * Includes important headers like `Content-Type`, `Server`, `X-RateLimit-Remaining`, `Cache-Control`, etc.
+
+* `curl -X POST -d "title=hello&body=test_content&userId=1" https://jsonplaceholder.typicode.com/posts`
+
+  * Sends a `POST` request with URL-encoded data
+  * The response is a JSON object containing the submitted data and a generated `id`
+
+---
+
+### 🔄 Summary
+
+Using `curl`, you can:
+
+* Interact with APIs via the command line
+* Simulate `GET`, `POST`, `PUT`, or `DELETE` requests
+* Send data using `-d`
+* View raw HTTP headers using `-I`
+
+This is a powerful tool for testing, debugging, and learning API interaction without needing a browser or frontend.
+
+---
+
+## 🧰 Tasks 2 to 5 – API Coding Exercises
+
+The following tasks involve writing and running actual Python code to interact with or implement RESTful APIs. Each task is located in the `restful-api` directory and has its own file.
+
+### 🔹 Task 2: Consume an API with Python (`requests`)
+- File: `task_02_requests.py`
+- Objective: Fetch posts from an API using `requests`, print titles, and save them to a CSV file using the `csv` module.
+
+### 🔹 Task 3: Develop an API using `http.server`
+- File: `task_03_http_server.py`
+- Objective: Create a basic HTTP server with custom GET routes, including `/`, `/data`, `/status`, and handle 404 errors with JSON responses.
+
+### 🔹 Task 4: Build a Flask-based API
+- File: `task_04_flask.py`
+- Objective: Use Flask to define routes (`/`, `/status`, `/data`, `/users/<username>`, `/add_user`), store user data in memory, handle GET/POST, and return JSON responses.
+
+### 🔹 Task 5: Secure your API
+- File: `task_05_basic_security.py`
+- Objective: Implement both Basic Auth and JWT authentication using Flask extensions. Protect routes and restrict access based on user roles (e.g., admin vs. user).
+
+Please refer to each script file for full implementation and usage examples.
+
+---
 
 ## 📂 Repository Info
 
