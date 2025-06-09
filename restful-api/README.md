@@ -1,3 +1,7 @@
+<div align="center"><img src="https://github.com/ksyv/holbertonschool-web_front_end/blob/main/baniere_holberton.png"></div>
+
+---
+
 # 📡 RESTful API – Holberton School
 
 ## 🎡 Project: RESTful API – Novice Level
