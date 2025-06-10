@@ -1,14 +1,11 @@
-from http.server import BaseHTTPRequestHandler, HTTPServer
-import json
-
+#!/usr/bin/python3
 """
 Module: task_03_http_server.py
 
 This module implements a basic HTTP server using Python's
 built-in http.server module.
 It provides a few predefined endpoints that demonstrate
-how to handle HTTP GET requests
-and return plain text or JSON responses.
+how to handle HTTP GET requests and return plain text or JSON responses.
 
 Endpoints:
 - `/`        → Returns a simple text response.
@@ -17,6 +14,9 @@ Endpoints:
 - `/info`    → Returns version and description information.
 Any other endpoint returns a 404 Not Found message.
 """
+
+from http.server import BaseHTTPRequestHandler, HTTPServer
+import json
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -39,13 +39,13 @@ class Handler(BaseHTTPRequestHandler):
         """
         if self.path == "/":
             self.send_response(200)
-            self.send_header("Content-type", "text/plain")
+            self.send_header("Content-Type", "text/plain; charset=utf-8")
             self.end_headers()
             self.wfile.write("Hello, this is a simple API!".encode())
 
         elif self.path == "/data":
             self.send_response(200)
-            self.send_header("Content-type", "application/json")
+            self.send_header("Content-Type", "application/json")
             self.end_headers()
             data_set = {"name": "John", "age": 30, "city": "New York"}
             json_data = json.dumps(data_set)
@@ -53,7 +53,7 @@ class Handler(BaseHTTPRequestHandler):
 
         elif self.path == "/status":
             self.send_response(200)
-            self.send_header("Content-type", "application/json")
+            self.send_header("Content-Type", "application/json")
             self.end_headers()
             data_dict = {"status": "OK"}
             json_dict = json.dumps(data_dict)
@@ -61,7 +61,7 @@ class Handler(BaseHTTPRequestHandler):
 
         elif self.path == "/info":
             self.send_response(200)
-            self.send_header("Content-type", "application/json")
+            self.send_header("Content-Type", "application/json")
             self.end_headers()
             data_info = {
                 "version": "1.0",
@@ -72,10 +72,11 @@ class Handler(BaseHTTPRequestHandler):
 
         else:
             self.send_response(404)
-            self.send_header("Content-type", "text/plain")
+            self.send_header("Content-Type", "text/plain; charset=utf-8")
             self.end_headers()
             self.wfile.write("Endpoint not found".encode())
 
 
-httpd = HTTPServer(('localhost', 8000), Handler)
-httpd.serve_forever()
+if __name__ == "__main__":
+    httpd = HTTPServer(('localhost', 8000), Handler)
+    httpd.serve_forever()
