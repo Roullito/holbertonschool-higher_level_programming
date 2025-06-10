@@ -41,7 +41,7 @@ class Handler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-type", "text/plain")
             self.end_headers()
-            self.wfile.write("Hello from HTTP server".encode())
+            self.wfile.write("Hello, this is a simple API!".encode())
 
         elif self.path == "/data":
             self.send_response(200)
