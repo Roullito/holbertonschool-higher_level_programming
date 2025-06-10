@@ -1,8 +1,42 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 
+"""
+Module: task_03_http_server.py
+
+This module implements a basic HTTP server using Python's
+built-in http.server module.
+It provides a few predefined endpoints that demonstrate
+how to handle HTTP GET requests
+and return plain text or JSON responses.
+
+Endpoints:
+- `/`        → Returns a simple text response.
+- `/data`    → Returns sample JSON data.
+- `/status`  → Returns a JSON object indicating the API status.
+- `/info`    → Returns version and description information.
+Any other endpoint returns a 404 Not Found message.
+"""
+
+
 class Handler(BaseHTTPRequestHandler):
+    """
+    Custom request handler for the HTTP server.
+
+    Handles GET requests and routes to specific endpoints:
+    - "/"        → Returns plain text greeting.
+    - "/data"    → Returns sample JSON data.
+    - "/status"  → Returns JSON status.
+    - "/info"    → Returns JSON version and description.
+    """
+
     def do_GET(self):
+        """
+        Handle GET requests based on the requested path.
+
+        Responds with appropriate content type and body.
+        Sends 404 error for undefined routes.
+        """
         if self.path == "/":
             self.send_response(200)
             self.send_header("Content-type", "text/plain")
@@ -29,8 +63,10 @@ class Handler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-type", "application/json")
             self.end_headers()
-            data_info = {"version": "1.0",
-                         "description": "A simple API built with http.server"}
+            data_info = {
+                "version": "1.0",
+                "description": "A simple API built with http.server"
+            }
             json_info = json.dumps(data_info)
             self.wfile.write(json_info.encode())
 
@@ -39,6 +75,7 @@ class Handler(BaseHTTPRequestHandler):
             self.send_header("Content-type", "text/plain")
             self.end_headers()
             self.wfile.write("Endpoint not found".encode())
+
 
 httpd = HTTPServer(('localhost', 8000), Handler)
 httpd.serve_forever()
