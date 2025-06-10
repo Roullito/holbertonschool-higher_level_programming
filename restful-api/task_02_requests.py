@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import requests
 import csv
 
@@ -26,10 +27,10 @@ def fetch_and_print_posts():
     it prints the title of each post.
     """
     response = requests.get("https://jsonplaceholder.typicode.com/posts")
+    print("Status Code:", response.status_code)
     if response.status_code == 200:
         for post in response.json():
             print(post["title"])
-    print(response.status_code)
 
 
 def fetch_and_save_posts():
