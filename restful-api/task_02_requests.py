@@ -2,53 +2,74 @@
 import requests
 import csv
 
-"""
-Module: task_02_fetch_posts.py
-
-This module contains two functions to interact with a placeholder API.
-- `fetch_and_print_posts`
-fetches posts and displays their titles in the console.
-- `fetch_and_save_posts`
-fetches posts and writes them to a CSV file.
-
-The module uses the `requests`
-library for HTTP requests and the `csv` module for file output.
-
-API used: https://jsonplaceholder.typicode.com/posts
-"""
-
 
 def fetch_and_print_posts():
-    """
-    Fetch posts from a placeholder API and print their titles.
+    """Fetches posts from JSONPlaceholder API and prints their titles.
 
-    Sends a GET request to https://jsonplaceholder.typicode.com/posts.
-    If the request is successful (HTTP status 200),
-    it prints the title of each post.
+    Makes a GET request to the JSONPlaceholder posts endpoint, checks the
+    response status code, and if successful (200), iterates through all
+    posts to print their titles to the console.
+
+    Args:
+        None
+
+    Returns:
+        None
+
+    Raises:
+        requests.exceptions.RequestException: If the HTTP request fails.
+
+    Example:
+        >>> fetch_and_print_posts()
+        Status Code: 200
+        sunt aut facere repellat provident occaecati excepturi
+        optio reprehenderit
+        qui est esse
+        ea molestias quasi exercitationem repellat qui ipsa sit aut
+        ...
     """
-    response = requests.get("https://jsonplaceholder.typicode.com/posts")
-    print("Status Code:", response.status_code)
-    if response.status_code == 200:
-        for post in response.json():
-            print(post["title"])
+    r = requests.get('https://jsonplaceholder.typicode.com/posts')
+    print(f"Status Code: {r.status_code}")
+    if r.status_code == 200:
+        for title in r.json():
+            print(title["title"])
 
 
 def fetch_and_save_posts():
-    """
-    Fetch posts from a placeholder API and save them into a CSV file.
+    """Fetches posts from JSONPlaceholder API and saves them to a CSV file.
 
-    Sends a GET request to https://jsonplaceholder.typicode.com/posts.
-    If the request is successful (HTTP status 200),
-    it writes the ID, title, and body
-    of each post into a CSV file named 'posts.csv'.
-    If the request fails, prints the HTTP error status.
+    Makes a GET request to the JSONPlaceholder posts endpoint and if
+    successful (200), creates a CSV file named 'posts.csv' with columns
+    for id, title, and body. Each post is written as a row in the CSV.
+
+    Args:
+        None
+
+    Returns:
+        None
+
+    Raises:
+        requests.exceptions.RequestException: If the HTTP request fails.
+        IOError: If there's an error creating or writing to the CSV file.
+
+    Note:
+        The CSV file will be created in the current working directory.
+        If the file already exists, it will be overwritten.
+
+    Example:
+        >>> fetch_and_save_posts()
+        # Creates posts.csv with id, title, body columns
     """
-    response = requests.get("https://jsonplaceholder.typicode.com/posts")
-    if response.status_code == 200:
-        with open("posts.csv", "w", newline='', encoding='utf-8') as f:
-            writer = csv.writer(f)
-            writer.writerow(["Id", "Title", "Body"])
-            for post in response.json():
-                writer.writerow([post["id"], post["title"], post["body"]])
-    else:
-        print("Request failed with status:", response.status_code)
+    r = requests.get('https://jsonplaceholder.typicode.com/posts')
+    if r.status_code == 200:
+        data = r.json()
+        with open('posts.csv', 'w', encoding='utf-8') as new_data:
+            posts = csv.DictWriter(new_data, ['id', 'title', 'body'])
+            posts.writeheader()
+
+            for dict in data:
+                posts.writerow({
+                    'id': dict['id'],
+                    'title': dict['title'],
+                    'body': dict['body']
+                })
