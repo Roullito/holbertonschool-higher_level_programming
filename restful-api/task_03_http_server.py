@@ -13,6 +13,8 @@ class Handler(BaseHTTPRequestHandler):
     """Custom handler for simple API routes."""
 
     def do_GET(self):
+        """Handle GET requests for different endpoints."""
+
         if self.path == "/":
             self.send_response(200)
             self.send_header("Content-Type", "text/plain")
@@ -47,6 +49,25 @@ class Handler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(b"Endpoint not found")
 
+    def log_message(self, format, *args):
+        """Override to add custom logging (optional)."""
+        print(f"[{self.date_time_string()}] {format % args}")
 
-httpd = HTTPServer(('localhost', 8000), Handler)
-httpd.serve_forever()
+
+def main():
+    """Main function to start the server."""
+    server_address = ('localhost', 8000)
+    httpd = HTTPServer(server_address, Handler)
+
+    print(f"Starting server on http://{server_address[0]}:{server_address[1]}")
+    print("Press Ctrl+C to stop the server")
+
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        print("\nServer stopped.")
+        httpd.server_close()
+
+
+if __name__ == "__main__":
+    main()
