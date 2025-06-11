@@ -49,11 +49,6 @@ class Handler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(b"Endpoint not found")
 
-    def log_message(self, format, *args):
-        """Override to add custom logging (optional)."""
-        print(f"[{self.date_time_string()}] {format % args}")
-
-
 def main():
     """Main function to start the server."""
     server_address = ('localhost', 8000)
