@@ -23,7 +23,7 @@ Example of valid JSON for POST /add_user:
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
-users = {}
+app.users = {}
 
 
 @app.route("/")
@@ -47,7 +47,7 @@ def get_username():
     """
     Returns a list of all usernames stored in memory.
     """
-    return jsonify(list(users.keys()))
+    return jsonify(list(app.users.keys()))
 
 
 @app.route("/users/<username>")
@@ -56,9 +56,9 @@ def get_user(username):
     Returns detailed info of a user if found.
     If not, returns a 404 error message.
     """
-    if username not in users:
+    if username not in app.users:
         return jsonify({"error": "User not found"})
-    user_data = users[username].copy()
+    user_data = app.users[username].copy()
     user_data["username"] = username
     return jsonify(user_data)
 
@@ -76,17 +76,14 @@ def add_user():
         return jsonify({"error": "Username is required"}), 400
 
     username = data["username"]
-    users[username] = {
+    app.users[username] = {
         "name": data.get("name"),
         "age": data.get("age"),
         "city": data.get("city")
     }
 
-    user_data = users[username].copy()
+    user_data = app.users[username].copy()
     user_data["username"] = username
 
     return jsonify({"message": "User added", "user": user_data}), 201
 
-
-if __name__ == "__main__":
-    app.run()
