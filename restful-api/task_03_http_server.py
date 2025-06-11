@@ -49,6 +49,7 @@ class Handler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(b"Endpoint not found")
 
+
 def main():
     """Main function to start the server."""
     server_address = ('localhost', 8000)
