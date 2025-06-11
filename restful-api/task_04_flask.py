@@ -31,7 +31,7 @@ def home():
     """
     Root endpoint. Returns a welcome message.
     """
-    return "Welcome to the Flask API!"
+    return "Welcome to the Flask API!", 200, {"Content-Type": "text/plain"}
 
 
 @app.route("/status")
@@ -39,7 +39,7 @@ def status():
     """
     Status check endpoint. Returns "OK".
     """
-    return "OK"
+    return "OK", 200, {"Content-Type": "text/plain"}
 
 
 @app.route("/data")
