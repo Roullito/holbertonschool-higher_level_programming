@@ -1,69 +1,53 @@
 #!/usr/bin/python3
-"""
-Module: task_03_http_server.py
-
-Basic HTTP server using Python's built-in http.server module.
-"""
-
-from http.server import BaseHTTPRequestHandler, HTTPServer
+"""Python web server that handles different HTTP endpoints"""
+import http.server
+import socketserver
 import json
 
 
-class Handler(BaseHTTPRequestHandler):
-    """Custom handler for simple API routes."""
+PORT = 8000
+
+
+class MyHandler(http.server.BaseHTTPRequestHandler):
+    """Custom HTTP request handler class"""
 
     def do_GET(self):
-        """Handle GET requests for different endpoints."""
+        """Handle GET requests to different endpoints"""
 
         if self.path == "/":
             self.send_response(200)
-            self.send_header("Content-Type", "text/plain")
+            self.send_header("Content-type", "text/plain")
             self.end_headers()
-            self.wfile.write(b"Hello, this is a simple API!")
+            self.wfile.write("Hello, this is a simple API!".encode())
 
         elif self.path == "/data":
             self.send_response(200)
-            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-type", "application/json")
             self.end_headers()
             data = {"name": "John", "age": 30, "city": "New York"}
             self.wfile.write(json.dumps(data).encode())
 
-        elif self.path == "/status":
-            self.send_response(200)
-            self.send_header("Content-Type", "application/json")
-            self.end_headers()
-            self.wfile.write(json.dumps({"status": "OK"}).encode())
-
         elif self.path == "/info":
             self.send_response(200)
-            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-type", "application/json")
             self.end_headers()
-            self.wfile.write(json.dumps({
-                "version": "1.0",
-                "description": "A simple API built with http.server"
-            }).encode())
+            info = {"version": "1.0",
+                    "description": "A simple API built with http.server"}
+            self.wfile.write(json.dumps(info).encode())
+
+        elif self.path == "/status":
+            self.send_response(200)
+            self.send_header("Content-type", "text/plain")
+            self.end_headers()
+            self.wfile.write("OK".encode())
 
         else:
             self.send_response(404)
-            self.send_header("Content-Type", "text/plain")
+            self.send_header("Content-type", "text/plain")
             self.end_headers()
-            self.wfile.write(b"Endpoint not found")
+            self.wfile.write("Endpoint not found".encode())
 
 
-def main():
-    """Main function to start the server."""
-    server_address = ('localhost', 8000)
-    httpd = HTTPServer(server_address, Handler)
-
-    print(f"Starting server on http://{server_address[0]}:{server_address[1]}")
-    print("Press Ctrl+C to stop the server")
-
-    try:
-        httpd.serve_forever()
-    except KeyboardInterrupt:
-        print("\nServer stopped.")
-        httpd.server_close()
-
-
-if __name__ == "__main__":
-    main()
+with socketserver.TCPServer(("", PORT), MyHandler) as httpd:
+    print(f"Serving at port {PORT}")
+    httpd.serve_forever()
