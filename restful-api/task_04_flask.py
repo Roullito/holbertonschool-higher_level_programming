@@ -17,7 +17,7 @@ app = Flask(__name__)
 users = {}
 
 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def home():
     """
     Handle GET requests to the root endpoint.
@@ -28,7 +28,7 @@ def home():
     return "Welcome to the Flask API!"
 
 
-@app.route("/status")
+@app.route("/status", methods=["GET"])
 def status():
     """
     Handle GET requests to check API status.
@@ -39,7 +39,7 @@ def status():
     return "OK"
 
 
-@app.route("/data")
+@app.route("/data", methods=["GET"])
 def data():
     """
     Handle GET requests to retrieve all usernames.
@@ -51,7 +51,7 @@ def data():
     return jsonify(list(users.keys()))
 
 
-@app.route("/users/<username>")
+@app.route("/users/<username>", methods=["GET"])
 def get_user(username):
     """
     Handle GET requests to retrieve a specific user by username.
