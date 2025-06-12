@@ -59,8 +59,6 @@ def get_user(username):
         Response: JSON response containing the user data if found,
                  or an error message if the user doesn't exist.
     """
-    if username not in users:
-        return jsonify({"error": "User not found"})
     return jsonify(users[username])
 
 @app.route("/add_user", methods=["POST"])
@@ -82,10 +80,6 @@ def add_user():
                  if username is missing (status 400).
     """
     data = request.get_json()
-
-    if not data or "username" not in data:
-        return jsonify({"error": "Username is required"}), 400
-
     username = data["username"]
 
     users[username] = {
