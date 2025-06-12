@@ -17,7 +17,7 @@ app = Flask(__name__)
 users = {}
 
 
-@app.route("/", methods=["GET"])
+@app.route("/")
 def home():
     """
     Handle GET requests to the root endpoint.
@@ -28,7 +28,7 @@ def home():
     return "Welcome to the Flask API!"
 
 
-@app.route("/status", methods=["GET"])
+@app.route("/status")
 def status():
     """
     Handle GET requests to check API status.
@@ -39,7 +39,7 @@ def status():
     return "OK"
 
 
-@app.route("/data", methods=["GET"])
+@app.route("/data")
 def data():
     """
     Handle GET requests to retrieve all usernames.
@@ -51,7 +51,7 @@ def data():
     return jsonify(list(users.keys()))
 
 
-@app.route("/users/<username>", methods=["GET"])
+@app.route("/users/<username>")
 def get_user(username):
     """
     Handle GET requests to retrieve a specific user by username.
@@ -64,7 +64,9 @@ def get_user(username):
                  or an error message if the user doesn't exist.
     """
     if username in users:
-        return jsonify(users[username])
+        user_data = users[username].copy()
+        user_data["username"] = username
+        return jsonify(user_data)
     else:
         return jsonify({"error": "User not found"})
 
@@ -95,15 +97,17 @@ def add_user():
     username = data["username"]
 
     users[username] = {
-        "username": username,
         "name": data.get("name"),
         "age": data.get("age"),
         "city": data.get("city")
     }
 
+    response_user = users[username].copy()
+    response_user["username"] = username
+
     return jsonify({
         "message": "User added",
-        "user": users[username]
+        "user": response_user
     }), 201
 
 
