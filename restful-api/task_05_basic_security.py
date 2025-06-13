@@ -50,8 +50,8 @@ def verify_password(username, password):
     if username in users:
         hashed_password = users[username]['password']
         if check_password_hash(hashed_password, password):
-            return True
-    return False
+            return username
+    return None
 
 
 @app.route("/basic-protected", methods=["GET"])
