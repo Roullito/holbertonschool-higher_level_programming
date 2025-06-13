@@ -47,16 +47,10 @@ def verify_password(username, password):
     """
     Basic Auth: verify user credentials.
     """
-    if username in users:
-        hashed_password = users[username]['password']
-        if check_password_hash(hashed_password, password):
-            return username
+    user = users.get(username)
+    if user and check_password_hash(user['password'], password):
+        return user
     return None
-
-
-@auth.error_handler
-def unauthorized():
-    return jsonify({"error": "Unauthorized"}), 401
 
 
 @app.route("/basic-protected", methods=["GET"])
@@ -81,11 +75,12 @@ def login():
     data = request.get_json()
     username = data.get("username")
     password = data.get("password")
-    if username in users:
-        hashed_password = users[username]['password']
-        if check_password_hash(hashed_password, password):
-            token = create_access_token(identity=username)
-            return jsonify({"access_token": token}), 200
+    user = users.get(username)
+    if user and check_password_hash(user['password'], password):
+        access_token = create_access_token(
+            identity={'username': username,
+                      'role': user['role']})
+        return jsonify(access_token=access_token)
     return jsonify({"error": "Invalid credentials"}), 401
 
 
