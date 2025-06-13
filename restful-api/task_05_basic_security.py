@@ -53,6 +53,11 @@ def verify_password(username, password):
     return None
 
 
+@auth.error_handler
+def unauthorized():
+    return jsonify({"error": "Unauthorized"}), 401
+
+
 @app.route("/basic-protected", methods=["GET"])
 @auth.login_required
 def basic_auth():
@@ -99,9 +104,8 @@ def admin():
     """
     Admin-only route. Requires JWT token and 'admin' role.
     """
-    username = get_jwt_identity()
-    role = users[username]["role"]
-    if role == "admin":
+    identity = get_jwt_identity()
+    if identity["role"] == "admin":
         return jsonify({"message": "Admin Access: Granted"}), 200
     else:
         return jsonify({"error": "Admin access required"}), 403
