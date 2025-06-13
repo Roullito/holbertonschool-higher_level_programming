@@ -53,9 +53,11 @@ def verify_password(username, password):
             return username
     return None
 
+
 @auth.error_handler
 def unauthorized():
     return jsonify({"error": "Unauthorized"}), 401
+
 
 @app.route("/basic-protected", methods=["GET"])
 @auth.login_required
@@ -63,7 +65,7 @@ def basic_auth():
     """
     Protected route using HTTP Basic Auth.
     """
-    return "Basic Auth: Access Granted"
+    return jsonify({"message": "Basic Auth: Access Granted"})
 
 
 @app.route("/login", methods=["POST"])
