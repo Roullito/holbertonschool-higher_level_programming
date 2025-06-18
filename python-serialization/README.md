@@ -1,12 +1,11 @@
-# Python - Input/Output
+![Holberton Logo](https://raw.githubusercontent.com/holbertonschool/holberton-logo/master/holberton-logo.png)
 
-![Holberton Logo](https://raw.githubusercontent.com/roullito/holbertonschool-levelup-static_web/main/logo_hbtn.png)
+# Python - Serialization
 
----
-
-## 📁 Project: Python - Input/Output
-
-This directory contains Python scripts that explore file operations (read/write), serialization (JSON), deserialization, and command-line argument parsing. The project follows Holberton School's curriculum and demonstrates fundamental I/O manipulation using Python.
+> **Project series:** Python / Higher-level programming
+> **Author:** Javier Valenzani
+> **Weight:** 1
+> **Level:** Novice
 
 ---
 
@@ -14,108 +13,132 @@ This directory contains Python scripts that explore file operations (read/write)
 
 * [Description](#description)
 * [Learning Objectives](#learning-objectives)
-* [Requirements](#requirements)
+* [Resources](#resources)
+* [Project Structure](#project-structure)
 * [Tasks](#tasks)
-* [Author](#author)
+
+  * [0. Basic Serialization](#0-basic-serialization)
+  * [1. Pickling Custom Classes](#1-pickling-custom-classes)
+  * [2. Converting CSV to JSON](#2-converting-csv-to-json)
+  * [3. Serializing and Deserializing with XML](#3-serializing-and-deserializing-with-xml)
 
 ---
 
-## 📝 Description
+## 📖 Description
 
-This project introduces core I/O capabilities in Python:
-
-* Opening and managing files
-* Reading from and writing to files
-* Working with the `with` statement
-* Serializing and deserializing Python objects using JSON
-* Handling command-line arguments
+This project is dedicated to the study of **marshaling** and **serialization** — fundamental concepts in computer science that facilitate the **storage**, **transmission**, and **reconstruction** of data. It focuses on real-world applications and helps build a solid foundation for data handling across various mediums.
 
 ---
 
 ## 🎯 Learning Objectives
 
-* Understand how file handling works in Python
-* Differentiate between reading, writing, and appending to a file
-* Use `with` statement to safely handle file context
-* Explain JSON serialization and deserialization
-* Implement custom serialization methods in Python classes
-* Access command line parameters in a script
+By the end of this project, you will be able to:
+
+* Understand the difference between marshaling and serialization.
+* Serialize and deserialize data in formats such as JSON, Pickle, and XML.
+* Work with custom objects and persist their state.
+* Convert between CSV and JSON.
+* Handle errors and data integrity during the serialization process.
+* Recognize where serialization is used (e.g., APIs, distributed systems, file persistence).
 
 ---
 
-## 🛠 Requirements
+## 🔗 Resources
 
-* Python version: 3.8.5
-* OS: Ubuntu 20.04 LTS
-* Code style: `pycodestyle` 2.7.\*
-* All scripts should be executable and start with `#!/usr/bin/python3`
-* A `README.md` is mandatory
-* Test cases (where required) reside in the `tests/` directory
+* [Real Python: Serialization](https://realpython.com/python-serialization-pickle-json/)
+* [Real Python: JSON Data Handling](https://realpython.com/python-json/)
+* [Python `pickle` module](https://docs.python.org/3/library/pickle.html)
+* [Corey Schafer: Pickle Tutorial](https://www.youtube.com/watch?v=2Tw39kZIbhs)
+* [CSV to JSON in Python](https://realpython.com/python-csv/)
+* [ElementTree XML Processing](https://docs.python.org/3/library/xml.etree.elementtree.html)
+* [Socket Programming in Python](https://realpython.com/python-sockets/)
+
+---
+
+## 🗂 Project Structure
+
+```
+python-serialization/
+├── task_00_basic_serialization.py
+├── task_01_pickle.py
+├── task_02_csv.py
+├── task_03_xml.py
+└── README.md
+```
 
 ---
 
 ## ✅ Tasks
 
-### 0. Read file
+### 0. Basic Serialization
 
-Reads a text file (UTF8) and prints its content to stdout.
+**File:** `task_00_basic_serialization.py`
 
-### 1. Write to a file
+* Implement:
 
-Writes a string to a text file and returns the number of characters written.
+  * `serialize_and_save_to_file(data, filename)`
+  * `load_and_deserialize(filename)`
+* Uses `json` to save and reload dictionaries.
 
-### 2. Append to a file
-
-Appends a string at the end of a text file and returns the number of characters added.
-
-### 3. To JSON string
-
-Returns the JSON representation of a Python object.
-
-### 4. From JSON string to Object
-
-Converts a JSON string into a Python data structure.
-
-### 5. Save Object to a file
-
-Writes an object to a file using JSON representation.
-
-### 6. Create object from a JSON file
-
-Creates an object from a JSON file.
-
-### 7. Load, add, save
-
-Adds all arguments to a Python list, then saves it as JSON to a file.
-
-### 8. Class to JSON
-
-Returns the dictionary description for JSON serialization of an object.
-
-### 9. Student to JSON
-
-Defines a `Student` class with a method to serialize its attributes.
-
-### 10. Student to JSON with filter
-
-Enhances serialization with an optional filter list of attributes.
-
-### 11. Student to disk and reload
-
-Saves a `Student` to a file and loads it back, updating its attributes.
-
-### 12. Pascal's Triangle
-
-Generates Pascal’s triangle of size `n` as a list of lists.
+✔️ 100% Passed
 
 ---
 
-## 👨‍💻 Author
+### 1. Pickling Custom Classes
 
-**Jules Moleins**
-[GitHub](https://github.com/roullito) ・ [LinkedIn](https://www.linkedin.com/in/julesmoleins)
+**File:** `task_01_pickle.py`
+
+* Class: `CustomObject`
+
+  * Attributes: `name`, `age`, `is_student`
+  * Methods:
+
+    * `display()` — print object's state
+    * `serialize(filename)` — saves object using `pickle`
+    * `deserialize(filename)` — loads object using `pickle`
+
+✔️ 100% Passed
 
 ---
 
-> Project from Holberton School - Higher Level Programming
+### 2. Converting CSV to JSON
 
+**File:** `task_02_csv.py`
+
+* Function: `convert_csv_to_json(csv_filename)`
+* Converts `.csv` data into a `.json` file.
+* Uses `csv.DictReader` and `json.dump()`
+* Handles missing files gracefully.
+
+✔️ 100% Passed
+
+---
+
+### 3. Serializing and Deserializing with XML
+
+**File:** `task_03_xml.py`
+
+* Functions:
+
+  * `serialize_to_xml(dictionary, filename)`
+  * `deserialize_from_xml(filename)`
+* Uses `xml.etree.ElementTree` to write and parse XML files.
+
+✔️ 100% Passed
+
+---
+
+## 📌 Repository
+
+**GitHub Repo:** [holbertonschool-higher\_level\_programming](https://github.com/holbertonschool-higher_level_programming)
+**Directory:** `python-serialization`
+
+---
+
+> *This project will strengthen your understanding of how data can be transformed and transferred between different environments. Mastering serialization is key for building robust, distributed, and persistent applications.*
+
+---
+
+Made with ❤️ at [Holberton School](https://www.holbertonschool.com/)
+
+---
