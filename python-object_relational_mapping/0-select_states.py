@@ -2,31 +2,30 @@
 
 """
 Script that lists all states from the database hbtn_0e_0_usa, sorted by id ascending.
-Uses MySQLdb and dotenv for credentials.
+Takes 3 arguments: mysql username, mysql password, and database name.
 """
 
+
 import MySQLdb
-from dotenv import load_dotenv
-import os
+import sys
 
-load_dotenv()
+if __name__ == "__main__":
 
-username = os.environ.get("MYSQL_USER")
-password = os.environ.get("MYSQL_PWD")
-database = os.environ.get("MYSQL_DB")
+    username = sys.argv[1]
+    password = sys.argv[2]
+    database = sys.argv[3]
 
-conn = MySQLdb.connect(
-    host="localhost",
-    port=3306,
-    user=username,
-    passwd=password,
-    db=database
-)
+    conn = MySQLdb.connect(
+        host="localhost",
+        port=3306,
+        user=username,
+        passwd=password,
+        db=database
+    )
 
-cur = conn.cursor()
-cur.execute("SELECT * FROM states ORDER BY id ASC")
-for row in cur.fetchall():
-    print(row)
-
-cur.close()
-conn.close()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM states ORDER BY id ASC")
+    for row in cur.fetchall():
+        print(row)
+    cur.close()
+    conn.close()
