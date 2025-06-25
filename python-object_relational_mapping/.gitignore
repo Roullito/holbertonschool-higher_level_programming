@@ -1,0 +1,40 @@
+# Environnements virtuels Python
+.venv/
+venv/
+env/
+ENV/
+# Fichiers temporaires Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Fichiers de configuration secrets
+.env
+*.env
+
+# Fichiers de logs et dumps
+*.log
+*.sqlite3
+*.db
+
+# Fichiers d'éditeur (VSCode, PyCharm, etc.)
+.vscode/
+.idea/
+*.swp
+
+# Mac OS / Linux
+.DS_Store
+*.~*
+
+# Dossiers de build Python
+build/
+dist/
+*.egg-info/
+
+# Fichiers système Holberton
+*.bak
+*.orig
+
+# Jupyter
+.ipynb_checkpoints/
