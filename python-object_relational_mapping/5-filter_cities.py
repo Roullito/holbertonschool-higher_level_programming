@@ -26,10 +26,10 @@ if __name__ == "__main__":
     )
     cur = db.cursor()
     state = sys.argv[4]
-    query = """SELECT cities.name FROM cities
-            JOIN states ON cities.state_id = states.id
-            WHERE states.name = %s
-            ORDER BY cities.id ASC"""
+    query = ("SELECT cities.name FROM cities "
+            "JOIN states ON cities.state_id = states.id "
+            "WHERE states.name = %s "
+            "ORDER BY cities.id ASC")
     cur.execute(query, (state,))
     villes = [row[0] for row in cur.fetchall()]
     if villes:
