@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Lists all State objects from the database hbtn_0e_6_usa."""
+"""Lists State id passed by sys.4 from the database hbtn_0e_6_usa."""
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -16,7 +16,8 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    for state in session.query(State).order_by(State.id).all():
-        print(f"{state.id}: {state.name}")
+    for state in session.query(State).filter(State.name.like("%a%")).all():
+        session.delete(state)
+    session.commit()
 
     session.close()
