@@ -27,9 +27,9 @@ def generate_invitations(template, attendees):
         copy_template = copy_template.replace("{event_date}", value_date)
 
         value_location = attendee.get("event_location") or "N/A"
-        copy_template = copy_template.replace("{event_location}", value_location)
+        copy_template = copy_template.replace(
+            "{event_location}", value_location)
 
         filename = f"output_{idx+1}.txt"
         with open(filename, "w") as f:
             f.write(copy_template)
-
