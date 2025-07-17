@@ -1,7 +1,5 @@
 <div align="center"><img src="https://github.com/ksyv/holbertonschool-web_front_end/blob/main/baniere_holberton.png"></div>
 
-![Holberton Logo](https://raw.githubusercontent.com/holbertonschool/holbertonschool-primary-system_check/master/holberton-logo.png)
-
 # Python - Object-Relational Mapping
 
 This repository contains scripts and modules that demonstrate how to interface with a MySQL database using Python. It showcases both direct SQL manipulation using `MySQLdb` and high-level database interaction via the `SQLAlchemy` ORM.
@@ -74,7 +72,7 @@ All Python files are executable and should be run using the following format:
 
 ## Author
 
-* \[Your Name] - Student at Holberton School
+Student at Holberton School
 
 ## Acknowledgements
 
